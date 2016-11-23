@@ -37,8 +37,11 @@ get value by key
 
 ## Put
 
-### void hashPut(_table** table, char* key, void* value)
-put key,value
+### void hashPut(char* key,_table** table)
+put key
+
+### void hashUpdate(char* key, void* value,_table* table)
+update key with value
 
 ## Size
 
