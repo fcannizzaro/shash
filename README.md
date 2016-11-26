@@ -40,8 +40,11 @@ get value by key
 ### void hashPut(char* key,_table** table)
 put key
 
-### void hashUpdate(char* key, void* value,_table* table)
+### void hashUpdate(char* key,void* value,_table* table)
 update key with value
+
+### void hashSet(char* key,void* value,_table** table)
+create if not exist and update
 
 ## Size
 

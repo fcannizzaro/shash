@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<stdbool.h>
 #include "hash.h"
 
 // Create Hash table creation
@@ -52,14 +53,14 @@ _cell* hashGetCell(char* key,_table* tab){
 }
 
 // Put Hash Cell
-void hashPut(char* key,_table* tab){
+_cell* hashPut(char* key,_table* tab){
 
 	int hash = hashcode(key,tab);
 
 	_cell* found = hashGetCell(key,tab);
 
 	if(found)
-		return;
+		return found;
 
 	// if not found
 	
@@ -68,17 +69,32 @@ void hashPut(char* key,_table* tab){
 	new->next = tab->array[hash];
 	tab->array[hash] = new;
 
+	return new;
 }
 
 // Update Hash Cell
-void hashUpdate(char* key,void* value,_table* tab){	
+_cell* hashUpdate(char* key,void* value,_table* tab){	
 
 	_cell * cell = hashGetCell(key,tab);
 
 	if(cell)
 		cell->value = value;
-	else
-		printf(" >> Cannot updated. [Key not found]");
+	
+	return cell;
+
+}
+
+// Put Set Cell
+_cell* hashSet(char* key,void* value,_table* tab){
+
+	_cell* ptr = hashUpdate(key,value,tab);
+
+	if(!ptr){
+		ptr = hashPut(key,tab);
+		ptr->value = value;
+	}
+
+	return ptr;
 
 }
 

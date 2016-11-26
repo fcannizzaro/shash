@@ -21,12 +21,14 @@ _table* newHash(int);
 
 /* Put/Update/Get */
 
-void hashPut(char*,_table*);
+_cell* hashPut(char*,_table*);
 
-void hashUpdate(char*,void*,_table*);
+_cell* hashUpdate(char*,void*,_table*);
 
-void* hashGet(char*,_table*);
+_cell* hashSet(char*,void*,_table*);
 
 _cell* hashGetCell(char*,_table*);
+
+void* hashGet(char*,_table*);
 
 #endif
